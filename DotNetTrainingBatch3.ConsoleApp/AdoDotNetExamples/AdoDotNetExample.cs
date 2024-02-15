@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples
 {
-    public class AddDotNetExample
+    public class AdoDotNetExample
     {
         public void Read()
         {
@@ -16,7 +16,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples
             sqlConnectionStringBuilder.DataSource = ".";
             sqlConnectionStringBuilder.InitialCatalog = "TestDb";
             sqlConnectionStringBuilder.UserID = "sa";
-            sqlConnectionStringBuilder.Password = "SNT13Nov";
+            sqlConnectionStringBuilder.Password = "";
 
             string query = "SELECT [BlogId], [BlogTitle], [BlogAuthor], [BlogContent] FROM [dbo].[tbl_blog]";
             SqlConnection sqlConnection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
@@ -46,7 +46,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples
             sqlConnectionStringBuilder.DataSource = ".";
             sqlConnectionStringBuilder.InitialCatalog = "TestDb";
             sqlConnectionStringBuilder.UserID = "sa";
-            sqlConnectionStringBuilder.Password = "SNT13Nov";
+            sqlConnectionStringBuilder.Password = "";
 
             string query = @"SELECT [BlogId], [BlogTitle], [BlogAuthor], [BlogContent] FROM [dbo].[tbl_blog]
                                 WHERE BlogId = @BlogId";    // To prevent SQL injection
@@ -81,7 +81,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples
             sqlConnectionStringBuilder.DataSource = ".";
             sqlConnectionStringBuilder.InitialCatalog = "TestDb";
             sqlConnectionStringBuilder.UserID = "sa";
-            sqlConnectionStringBuilder.Password = "SNT13Nov";
+            sqlConnectionStringBuilder.Password = "";
 
             string query = @"INSERT INTO [dbo].[tbl_blog]
                             ([BlogTitle], [BlogAuthor], [BlogContent])
@@ -106,7 +106,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples
             sqlConnectionStringBuilder.DataSource = ".";
             sqlConnectionStringBuilder.InitialCatalog = "TestDb";
             sqlConnectionStringBuilder.UserID = "sa";
-            sqlConnectionStringBuilder.Password = "SNT13Nov";
+            sqlConnectionStringBuilder.Password = "";
 
             string query = @"UPDATE [dbo].[tbl_blog]
                             SET [BlogTitle] = @BlogTitle, 
@@ -124,6 +124,27 @@ namespace DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples
             sqlConnection.Close();
 
             string message = result > 0 ? "Updated Successfully" : "Failed to update the existing record";
+            Console.WriteLine(message);
+        }
+
+        public void Delete(int id)
+        {
+            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
+            sqlConnectionStringBuilder.DataSource = ".";
+            sqlConnectionStringBuilder.InitialCatalog = "TestDb";
+            sqlConnectionStringBuilder.UserID = "sa";
+            sqlConnectionStringBuilder.Password = "";
+
+            string query = @"DELETE FROM [dbo].[tbl_blog] WHERE BlogId = @BlogId";
+            SqlConnection sqlConnection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+           
+            int result = cmd.ExecuteNonQuery();
+            sqlConnection.Close();
+
+            string message = result > 0 ? "Deleted Successfully" : "Failed to delete the record";
             Console.WriteLine(message);
         }
     }

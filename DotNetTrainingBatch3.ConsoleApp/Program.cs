@@ -14,8 +14,9 @@ using DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples;
 // F9 => Break point
 
 
-AddDotNetExample addDotNetExample = new AddDotNetExample();
-addDotNetExample.Read();
-//addDotNetExample.Edit(13);
-//addDotNetExample.Create("Hello Japan", "Shin Paing Min", "Welcome to Japan!");
-//addDotNetExample.Update(2, "Test 2", "shin", "hehe haha!");
+AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+adoDotNetExample.Read();
+//adoDotNetExample.Edit(13);
+//adoDotNetExample.Create("Hello Japan", "Shin Paing Min", "Welcome to Japan!");
+//adoDotNetExample.Update(2, "Test 2", "shin", "hehe haha!");
+//adoDotNetExample.Delete(1);
