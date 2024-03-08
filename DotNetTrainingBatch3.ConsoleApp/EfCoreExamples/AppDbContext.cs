@@ -18,7 +18,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.EfCoreExamples
                    DataSource = ".",
                    InitialCatalog = "TestDb",
                    UserID = "sa",
-                   Password = "",
+                   Password = "sasa123",
                    TrustServerCertificate = true
             };
 

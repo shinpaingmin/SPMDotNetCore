@@ -18,7 +18,7 @@ namespace DotNetTrainingBatch3.WebApi
                 DataSource = ".",
                 InitialCatalog = "TestDb",
                 UserID = "sa",
-                Password = "SNT13Nov",
+                Password = "sasa123",
                 TrustServerCertificate = true
             };
 

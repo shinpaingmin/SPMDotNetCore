@@ -19,7 +19,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.DapperExamples
             DataSource = ".",
             InitialCatalog = "TestDb",
             UserID = "sa",
-            Password = ""
+            Password = "sasa123"
         };
         public void Read()
         {
