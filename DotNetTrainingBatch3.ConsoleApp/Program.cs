@@ -2,6 +2,7 @@
 using DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples;
 using DotNetTrainingBatch3.ConsoleApp.DapperExamples;
 using DotNetTrainingBatch3.ConsoleApp.EfCoreExamples;
+using DotNetTrainingBatch3.ConsoleApp.HttpClientExamples;
 
 
 //F5 => Run 
@@ -30,8 +31,14 @@ using DotNetTrainingBatch3.ConsoleApp.EfCoreExamples;
 //dapperExample.Update(12, "abc", "ABC", "English alphabets");
 //dapperExample.Delete(11);
 
-EfCoreExample efCoreExample = new EfCoreExample();
+//EfCoreExample efCoreExample = new EfCoreExample();
 //efCoreExample.Read();
 //efCoreExample.Create("slkdfj", "dsklfjsd", "kdjsfkl");
 //efCoreExample.Update(11, "slkdfj", "dsklfjsd", "kdjsfkl");
-efCoreExample.Delete(4);
+//efCoreExample.Delete(4);
+
+Console.WriteLine("Waiting for APi");
+Console.ReadKey();
+
+HttpClientExample httpClientExample = new HttpClientExample();
+await httpClientExample.Run();

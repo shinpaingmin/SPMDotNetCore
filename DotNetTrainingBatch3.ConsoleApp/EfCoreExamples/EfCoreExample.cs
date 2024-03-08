@@ -27,7 +27,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.EfCoreExamples
         {
             AppDbContext db = new AppDbContext();
             //BlogModel blog = db.Blogs.Where(item => item.BlogId == id).FirstOrDefault();
-            BlogModel blog = db.Blogs.FirstOrDefault(item => item.BlogId == id);
+            BlogModel blog = db.Blogs.FirstOrDefault(item => item.BlogId == id)!;
 
             if(blog is null)
             {
@@ -62,7 +62,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.EfCoreExamples
         public void Update(int id, string title, string author, string content)
         {
             AppDbContext db = new AppDbContext();
-            BlogModel blog = db.Blogs.FirstOrDefault(item => item.BlogId == id);
+            BlogModel blog = db.Blogs.FirstOrDefault(item => item.BlogId == id)!;
 
             if(blog is null)
             {
@@ -83,7 +83,7 @@ namespace DotNetTrainingBatch3.ConsoleApp.EfCoreExamples
         public void Delete(int id) 
         {
             AppDbContext db = new AppDbContext();
-            BlogModel blog = db.Blogs.FirstOrDefault(item => item.BlogId == id);
+            BlogModel blog = db.Blogs.FirstOrDefault(item => item.BlogId == id)!;
 
             if (blog is null)
             {
