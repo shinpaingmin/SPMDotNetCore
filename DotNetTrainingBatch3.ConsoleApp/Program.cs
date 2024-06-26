@@ -3,6 +3,8 @@ using DotNetTrainingBatch3.ConsoleApp.AddDotNetExamples;
 using DotNetTrainingBatch3.ConsoleApp.DapperExamples;
 using DotNetTrainingBatch3.ConsoleApp.EfCoreExamples;
 using DotNetTrainingBatch3.ConsoleApp.HttpClientExamples;
+using DotNetTrainingBatch3.ConsoleApp.Models;
+using Newtonsoft.Json;
 
 
 //F5 => Run 
@@ -37,7 +39,23 @@ using DotNetTrainingBatch3.ConsoleApp.HttpClientExamples;
 //efCoreExample.Update(11, "slkdfj", "dsklfjsd", "kdjsfkl");
 //efCoreExample.Delete(4);
 
-Console.WriteLine("Waiting for APi");
+//Console.WriteLine("Waiting for APi");
+//Console.ReadKey();
+
+//HttpClientExample httpClientExample = new HttpClientExample();
+//await httpClientExample.Run();
+
+//BlogModel blog = new BlogModel();
+//blog.BlogTitle = "Title";
+//blog.BlogAuthor = "Author";
+//blog.BlogContent = "Content";
+
+// SerializeObject -> C# obj - JSON 
+//string json = JsonConvert.SerializeObject(blog);
+//BlogModel blog2 = JsonConvert.DeserializeObject<BlogModel>(json)!;
+//Console.WriteLine(blog2.BlogTitle);
+
+Console.WriteLine("Waiting for API...");
 Console.ReadKey();
 
 HttpClientExample httpClientExample = new HttpClientExample();

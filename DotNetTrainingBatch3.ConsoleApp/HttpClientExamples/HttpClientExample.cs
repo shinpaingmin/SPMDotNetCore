@@ -12,24 +12,22 @@ namespace DotNetTrainingBatch3.ConsoleApp.HttpClientExamples
     {
         public async Task Run()
         {
-            await ReadJsonPlaceholder();
+            //await Read();
+            //await Edit(1);
+            //await Edit(100);
+            //await Create("title123", "author", "content");\
+            await Delete(1);
         }
 
         private async Task Read()
         {
             HttpClient client = new HttpClient();
-
             HttpResponseMessage response = await client.GetAsync("http://localhost:5001/api/Blog");
 
             if(response.IsSuccessStatusCode)
             {
-                string jsonStr = await response.Content.ReadAsStringAsync();
-                //Console.WriteLine(jsonStr);
-
-                // JsonConvert.SerializeObject(...); // C# object to JSON
-                // JsonConvert.DeserializeObject(...); // JSON to C# object
-
-                List<BlogModel> lst = JsonConvert.DeserializeObject<List<BlogModel>>(jsonStr)!; // ! = cannot be null
+                string json = await response.Content.ReadAsStringAsync();
+                List<BlogModel> lst = JsonConvert.DeserializeObject<List<BlogModel>>(json)!;
 
                 foreach(BlogModel item in lst)
                 {
@@ -39,31 +37,109 @@ namespace DotNetTrainingBatch3.ConsoleApp.HttpClientExamples
                     Console.WriteLine(item.BlogContent);
                 }
             }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
         }
 
-        private async Task ReadJsonPlaceholder()
+        private async Task Edit(int id)
         {
             HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync($"http://localhost:5001/api/Blog/{id}");
 
-            HttpResponseMessage response = await client.GetAsync("https://jsonplaceholder.typicode.com/posts");
+            if(response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                BlogModel item = JsonConvert.DeserializeObject<BlogModel>(json)!;
+
+                Console.WriteLine(item.BlogId);
+                Console.WriteLine(item.BlogTitle);
+                Console.WriteLine(item.BlogAuthor);
+                Console.WriteLine(item.BlogContent);
+
+            }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+        }
+
+        private async Task Create(string title, string author, string content)
+        {
+
+            BlogModel blog = new BlogModel()
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content,
+            };
+
+            string jsonBlog = JsonConvert.SerializeObject(blog);
+
+            HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, "application/json");   // StringContent inheritance from HttpContent
+
+            string url = "http://localhost:5001/api/Blog";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.PostAsync(url, httpContent);
+
+            if(response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(json);
+            }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+        }
+
+        private async Task Update(int id, string title, string author, string content)
+        {
+
+            BlogModel blog = new BlogModel()
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content,
+            };
+
+            string jsonBlog = JsonConvert.SerializeObject(blog);
+
+            HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, "application/json");   // StringContent inheritance from HttpContent
+
+            string url = $"http://localhost:5001/api/Blog/{id}";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.PutAsync(url, httpContent);
 
             if (response.IsSuccessStatusCode)
             {
-                string jsonStr = await response.Content.ReadAsStringAsync();
-         
+                string json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(json);
+            }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+        }
 
-                // JsonConvert.SerializeObject(...); // C# object to JSON
-                // JsonConvert.DeserializeObject(...); // JSON to C# object
+        private async Task Delete(int id)
+        {
+            string url = $"http://localhost:5001/api/Blog/{id}";
 
-                List<JsonPostModel> lst = JsonConvert.DeserializeObject<List<JsonPostModel>>(jsonStr)!; // ! = cannot be null
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.DeleteAsync(url);
 
-                foreach (JsonPostModel item in lst)
-                {
-                    Console.WriteLine(item.userId);
-                    Console.WriteLine(item.id);
-                    Console.WriteLine(item.title);
-                    Console.WriteLine(item.body);
-                }
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(json);
+            }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
             }
         }
     }
