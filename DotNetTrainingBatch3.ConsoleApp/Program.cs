@@ -4,6 +4,7 @@ using DotNetTrainingBatch3.ConsoleApp.DapperExamples;
 using DotNetTrainingBatch3.ConsoleApp.EfCoreExamples;
 using DotNetTrainingBatch3.ConsoleApp.HttpClientExamples;
 using DotNetTrainingBatch3.ConsoleApp.Models;
+using DotNetTrainingBatch3.ConsoleApp.RestClientExamples;
 using Newtonsoft.Json;
 
 
@@ -58,5 +59,8 @@ using Newtonsoft.Json;
 Console.WriteLine("Waiting for API...");
 Console.ReadKey();
 
-HttpClientExample httpClientExample = new HttpClientExample();
-await httpClientExample.Run();
+//HttpClientExample httpClientExample = new HttpClientExample();
+//await httpClientExample.Run();
+
+RestClientExample restClientExample = new RestClientExample();
+await restClientExample.Run();
