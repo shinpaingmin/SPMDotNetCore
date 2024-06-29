@@ -4,6 +4,7 @@ using DotNetTrainingBatch3.ConsoleApp.DapperExamples;
 using DotNetTrainingBatch3.ConsoleApp.EfCoreExamples;
 using DotNetTrainingBatch3.ConsoleApp.HttpClientExamples;
 using DotNetTrainingBatch3.ConsoleApp.Models;
+using DotNetTrainingBatch3.ConsoleApp.RefitExamples;
 using DotNetTrainingBatch3.ConsoleApp.RestClientExamples;
 using Newtonsoft.Json;
 
@@ -62,5 +63,8 @@ Console.ReadKey();
 //HttpClientExample httpClientExample = new HttpClientExample();
 //await httpClientExample.Run();
 
-RestClientExample restClientExample = new RestClientExample();
-await restClientExample.Run();
+//RestClientExample restClientExample = new RestClientExample();
+//await restClientExample.Run();
+
+RefitExample refitExample = new RefitExample();
+await refitExample.Run();
